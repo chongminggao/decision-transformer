@@ -51,7 +51,7 @@ def experiment(
         env_targets = [5000, 2500]
         scale = 1000.
     elif env_name == 'reacher2d':
-        from trajectory_bert.envs.reacher_2d import Reacher2dEnv
+        from decision_transformer.envs.reacher_2d import Reacher2dEnv
         env = Reacher2dEnv()
         max_ep_len = 100
         env_targets = [76, 40]
@@ -106,7 +106,7 @@ def experiment(
     num_trajectories = 1
     timesteps = traj_lens[sorted_inds[-1]]
     ind = len(trajectories) - 2
-    while ind >= 0 and timesteps + traj_lens[sorted_inds[ind]] < num_timesteps:
+    while ind >= 0 and timesteps + traj_lens[sorted_inds[ind]] <= num_timesteps:
         timesteps += traj_lens[sorted_inds[ind]]
         num_trajectories += 1
         ind -= 1
